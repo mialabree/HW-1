@@ -1,3 +1,7 @@
+#include <iostream>                                                   
+#include <string>
+#include <vector>
+
 int main()
 {
   std::cout << "Welcome to Kroger.  Place grocery items into your shopping cart by entering each item's information." << std::endl;
