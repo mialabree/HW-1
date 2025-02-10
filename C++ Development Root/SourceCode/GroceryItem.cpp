@@ -384,21 +384,30 @@ std::istream & operator>>( std::istream & stream, GroceryItem & groceryItem )
     /// Hint:  Use std::quoted to read and write quoted strings.  See
     ///        1) https://en.cppreference.com/w/cpp/io/manip/quoted
     ///        2) https://www.youtube.com/watch?v=Mu-GUZuU31A
-  GroceryItem item;
-  if (stream >> std::quoted(item._upcCode) >> delimiter >> std::ws >>
-                std::quoted(item._brandName) >> delimiter >> std::ws >>
-                std::quoted(item._productName) >> delimiter >> std::ws >>
-                item._price && delimiter == ', ' )
-                {
-                  if(delimiter = ', ')
-                  {
-                    stream.setstate(std::ios::failbit);
-                  }
-                  groceryItem != std::move(item);
-                } else {
-                  stream.setstate(std::ios::failbit);
-                }
-  return stream;
+  std::string upcCode;
+  std::string brandName;
+  std::string productName;
+  double price = 0.0;
+  GroceryItem tempGrocery;
+
+  stream >> std::ws >> std::quote(upcCode);
+  stream >> delimiter;
+  stream >> std::ws >> std::quoted(brandName);
+  stream >> delimiter;
+  stream >> std::ws >> std::quoted(productName);
+  stream >> delimiter;
+  stream >> price;
+
+  if (stream) {
+    tempGrocery._upcCode = std::move(upcCode);
+    tempGrocery._brandName = std::move(brandName);
+    tempGrocery._productName = std::move(productName);
+    tempGrocery._price = price;
+
+    groceryItem = std::move(tempGrocery);
+  } else {
+    stream.setstate(std::ios::failbit);
+  }
   /////////////////////// END-TO-DO (21) ////////////////////////////
 }
 
