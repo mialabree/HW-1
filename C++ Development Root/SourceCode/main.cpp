@@ -17,9 +17,8 @@ int main()
   std::cout << "Enter UPC, Product Brand, Product Name, and Price: ";
   while(std::cin >> newProduct)
     {
-        auto newItem = std::make_unique<GroceryItem>(newProduct);
-        shoppingCart.push_back(std::move(newItem));
-        std::cout << "Item added to shopping cart: " << newProduct << "\n\n";
+        shoppingCart.push_back(std::make_unique<GroceryItem>(std::move(newProduct)));
+        std::cout << "Item added to shopping cart: " << *shoppingCart.back() << "\n\n";
         std::cout << "Enter UPC, Product Brand, Product Name, and Price: ";
     }
 
