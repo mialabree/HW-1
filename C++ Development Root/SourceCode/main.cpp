@@ -21,9 +21,14 @@ int main()
         std::cout << "Item added to shopping cart: " << *shoppingCart.back() << "\n\n";
         std::cout << "Enter UPC, Product Brand, Product Name, and Price: ";
     }
+  
+  std::cout << "\n\n\n" << "Here is an itemized list of the items in your shopping cart: ";
 
-    std::cout << "Here is an itemized list of the items in your shopping cart:\n";
-    for (auto i = shoppingCart.crbegin(); i != shoppingCart.crend(); ++i) {
-        std::cout << **i << '\n';
-    }
-  return 0;}
+  for(auto it = shoppingCart.crbegin(); it != shoppingCart.crend(); ++it) {
+    std::cout << '\n' << *(*it);
+  }
+
+  std::cout << '\n';
+
+  return 0; 
+}
