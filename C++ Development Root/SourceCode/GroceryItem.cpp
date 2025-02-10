@@ -390,7 +390,7 @@ std::istream & operator>>( std::istream & stream, GroceryItem & groceryItem )
   double price = 0.0;
   GroceryItem tempGrocery;
 
-  stream >> std::ws >> std::quote(upcCode);
+  stream >> std::ws >> std::quoted(upcCode);
   stream >> delimiter;
   stream >> std::ws >> std::quoted(brandName);
   stream >> delimiter;
