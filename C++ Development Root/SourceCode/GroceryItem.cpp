@@ -41,7 +41,7 @@ namespace    // unnamed, anonymous namespace
       ///           else       return false;
       ///         do this instead:
       ///           return a < b;
-auto distance = std::abs(lhs-rhs)
+auto distance = std::abs(lhs-rhs);
 auto magnitude = std::max(std::abs(lhs), std::abs(rhs));
 
 return distance < EPSILON1 ||
@@ -110,7 +110,7 @@ GroceryItem & GroceryItem::operator=( GroceryItem const & rhs ) &
     _upcCode = rhs._upcCode;
     _brandName = rhs._brandName;
     _productName = rhs._productName;
-    _price = rhs._price
+    _price = rhs._price;
   }
   return *this;
   /////////////////////// END-TO-DO (5) ////////////////////////////
@@ -121,7 +121,7 @@ GroceryItem & GroceryItem::operator=( GroceryItem const & rhs ) &
 
 // Move Assignment Operator
 ///////////////////////// TO-DO (6) //////////////////////////////
-GrocerItem & GroceryItem::operator=(GroceryItem && rhs) & noexcept
+GroceryItem & GroceryItem::operator=(GroceryItem && rhs) & noexcept
 {
   if(this != &rhs)
   {
@@ -130,7 +130,7 @@ GrocerItem & GroceryItem::operator=(GroceryItem && rhs) & noexcept
     _productName = std::move(rhs._productName);
     _price = rhs._price;
   }
-  return *this
+  return *this;
 }
 /////////////////////// END-TO-DO (6) ////////////////////////////
 
@@ -345,8 +345,8 @@ bool GroceryItem::operator==( const GroceryItem & rhs ) const noexcept
 
   ///////////////////////// TO-DO (20) //////////////////////////////
   return floating_point_is_equal(_price, rhs._price) &&
-    _upcCode == rhs.upcCode   &&
-    _brandName == rhs._brandName    &&
+    _upcCode == rhs.upcCode()  &&
+    _brandName == rhs._brandName  &&
     _productName == rhs._productName;
   /////////////////////// END-TO-DO (20) ////////////////////////////
 }
