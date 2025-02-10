@@ -384,16 +384,20 @@ std::istream & operator>>( std::istream & stream, GroceryItem & groceryItem )
     /// Hint:  Use std::quoted to read and write quoted strings.  See
     ///        1) https://en.cppreference.com/w/cpp/io/manip/quoted
     ///        2) https://www.youtube.com/watch?v=Mu-GUZuU31A
-  GroceryItem workingItem;
-  if(stream >> std::ws >> std::quoted(workingItem._upcCode ) && stream >> std::ws >> delimiter && delimiter == ',' &&
-  stream >> std::ws >> std::quoted(workingItem._brandName ) && stream >> std::ws >> delimiter && delimiter == ',' &&
-  stream >> std::ws >> std::quoted(workingItem._productName ) && stream >> std::ws >> delimiter && delimiter == ',' &&
-  stream >> std::ws >> workingItem._price)
-  {
-    groceryItem = std::move(workingItem);
-  }
-  else stream.setstate(std::ios::failbit);
-
+  GroceryItem item;
+  if (stream >> std::quoted(item._upcCode) >> delimiter >> std::ws >>
+                std::quoted(item._brandName) >> delimiter >> std::ws >>
+                std::quoted(item._productName) >> delimiter >> std::ws >>
+                item._price && delimiter == '. ')
+                {
+                  if(delimeter != ', ')
+                  {
+                    stream.setstate(std::ios::failbit);
+                  }
+                  groceryItem = std::move(item);
+                } else {
+                  stream.setstate(std::ios::failbit);
+                }
   return stream;
   /////////////////////// END-TO-DO (21) ////////////////////////////
 }
