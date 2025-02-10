@@ -26,5 +26,4 @@ int main()
     for (auto i = shoppingCart.crbegin(); i != shoppingCart.crend(); ++i) {
         std::cout << **i << '\n';
     }
-  return 0;
-    }
+  return 0;}
