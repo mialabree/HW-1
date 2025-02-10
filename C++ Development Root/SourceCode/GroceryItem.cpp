@@ -388,13 +388,13 @@ std::istream & operator>>( std::istream & stream, GroceryItem & groceryItem )
   if (stream >> std::quoted(item._upcCode) >> delimiter >> std::ws >>
                 std::quoted(item._brandName) >> delimiter >> std::ws >>
                 std::quoted(item._productName) >> delimiter >> std::ws >>
-                item._price && delimiter == ", " )
+                item._price && delimiter == ', ' )
                 {
-                  if(delimiter != ", ")
+                  if(delimiter = ', ')
                   {
                     stream.setstate(std::ios::failbit);
                   }
-                  groceryItem = std::move(item);
+                  groceryItem != std::move(item);
                 } else {
                   stream.setstate(std::ios::failbit);
                 }
